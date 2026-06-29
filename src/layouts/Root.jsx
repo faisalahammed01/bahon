@@ -5,7 +5,7 @@ import Nav from "../pages/Shared/Nav";
 
 const Root = () => {
     return (
-        <div>
+        <div className="h-screen flex flex-col justify-between">
             <Nav></Nav>
             <Outlet></Outlet>
             <Footer></Footer>

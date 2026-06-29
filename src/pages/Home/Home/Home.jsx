@@ -1,9 +1,10 @@
+import Banner from "../Banner";
 
 
 const Home = () => {
     return (
         <div>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime distinctio quas cum a sapiente ipsam ipsum harum iure reiciendis nisi nihil, rem nam vero mollitia labore architecto ex, quo expedita.
+           <Banner></Banner>
         </div>
     );
 };

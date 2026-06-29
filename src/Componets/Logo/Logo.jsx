@@ -1,8 +1,9 @@
 import logo from "../../assets/logo.png";
 const Logo = () => {
     return (
-        <div>
-            <img width="50" src={logo} alt="Logo" />
+        <div className="flex items-center gap-2">
+            <img width="30" src={logo} alt="Logo" />
+            <h3 className="text-3xl font-bold -ms-2">BHAON</h3>
         </div>
     );
 };

@@ -4,14 +4,14 @@ import Logo from "../../Componets/Logo/Logo";
 const Footer = () => {
     return (
         <div>
-            <footer className="footer footer-horizontal footer-center  text-primary-content p-10">
+            <footer className="footer footer-horizontal  footer-center p-10">
   <aside>
        
-       <Logo></Logo>
-    <p className="font-bold">
-      ACME Industries Ltd.
-      <br />
-      Providing reliable tech since 1992
+       <Logo ></Logo>
+   
+    <p className=" text-md text-secondary">
+      Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments
+      <br /> — we deliver on time, every time.
     </p>
     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
   </aside>
