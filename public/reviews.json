@@ -1,61 +1,61 @@
 [
   {
     "id": 1,
-    "review": "A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day.",
+    "text": "A posture corrector works by providing support and gentle alignment to your shoulders, back, and spine, encouraging you to maintain proper posture throughout the day.",
     "name": "Awlad Hossin",
     "role": "Senior Product Designer"
   },
   {
     "id": 2,
-    "review": "This delivery app makes ordering food incredibly easy and fast with real-time tracking and smooth UI experience.",
+    "text": "This delivery app makes ordering food incredibly easy and fast with real-time tracking and smooth UI experience.",
     "name": "Nusrat Jahan",
     "role": "UI/UX Designer"
   },
   {
     "id": 3,
-    "review": "I love how this app simplifies daily tasks and provides quick delivery service with reliable support.",
+    "text": "I love how this app simplifies daily tasks and provides quick delivery service with reliable support.",
     "name": "Rahim Uddin",
     "role": "Software Engineer"
   },
   {
     "id": 4,
-    "review": "The product quality is excellent and the delivery system is very efficient and on time.",
+    "text": "The product quality is excellent and the delivery system is very efficient and on time.",
     "name": "Mehedi Hasan",
     "role": "Project Manager"
   },
   {
     "id": 5,
-    "review": "Very smooth experience using this app. Everything is well organized and user friendly.",
+    "text": "Very smooth experience using this app. Everything is well organized and user friendly.",
     "name": "Tahmina Akter",
     "role": "Frontend Developer"
   },
   {
     "id": 6,
-    "review": "Customer support is very responsive and helpful whenever I face any issue.",
+    "text": "Customer support is very responsive and helpful whenever I face any issue.",
     "name": "Sabbir Ahmed",
     "role": "Backend Developer"
   },
   {
     "id": 7,
-    "review": "Fast delivery and clean UI make this app one of the best in its category.",
+    "text": "Fast delivery and clean UI make this app one of the best in its category.",
     "name": "Rafiq Islam",
     "role": "Mobile App Developer"
   },
   {
     "id": 8,
-    "review": "I really appreciate the smooth checkout process and secure payment system.",
+    "text": "I really appreciate the smooth checkout process and secure payment system.",
     "name": "Ayesha Rahman",
     "role": "Product Designer"
   },
   {
     "id": 9,
-    "review": "Highly recommended app for daily delivery needs with excellent performance.",
+    "text": "Highly recommended app for daily delivery needs with excellent performance.",
     "name": "Shakil Khan",
     "role": "Full Stack Developer"
   },
   {
     "id": 10,
-    "review": "The experience is very reliable and consistent. I use it almost every day.",
+    "text": "The experience is very reliable and consistent. I use it almost every day.",
     "name": "Fariha Noor",
     "role": "Software Engineer"
   }

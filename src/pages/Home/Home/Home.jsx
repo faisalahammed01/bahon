@@ -1,5 +1,7 @@
 import Banner from "../Banner";
+import HeroSection from "../HeroSection";
 import Brands from "./Brands";
+import FAQSection from "./FAQSection";
 import Info from "./Info";
 import Review from "./Review";
 import ServicesSection from "./ServicesSection";
@@ -23,7 +25,11 @@ const Home = () => {
       {/* Info Section */}
       <Info></Info>
 
+      <HeroSection></HeroSection>
+
       <Review reviewsPromise={reviewsPromise}></Review>
+
+      <FAQSection></FAQSection>
     </div>
   );
 };
