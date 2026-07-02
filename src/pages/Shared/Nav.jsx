@@ -3,12 +3,12 @@ import Logo from "../../Componets/Logo/Logo";
 
 const links =
 <>
-<li><NavLink className='uppercase' to=''>Services</NavLink></li>
-<li><NavLink className='uppercase' to=''>Coverage</NavLink></li>
-<li><NavLink className='uppercase' to=''>About Us</NavLink></li>
-<li><NavLink className='uppercase' to=''>Pricing</NavLink></li>
-<li><NavLink className='uppercase' to=''>Blog</NavLink></li>
-<li><NavLink className='uppercase' to=''>Contact</NavLink></li>
+<li><NavLink className='uppercase' to='/services'>Services</NavLink></li>
+<li><NavLink className='uppercase' to='/coverage'>Coverage</NavLink></li>
+<li><NavLink className='uppercase' to='/about'>About Us</NavLink></li>
+<li><NavLink className='uppercase' to='/pricing'>Pricing</NavLink></li>
+<li><NavLink className='uppercase' to='/blog'>Blog</NavLink></li>
+<li><NavLink className='uppercase' to='/contact'>Contact</NavLink></li>
   
 </>
   

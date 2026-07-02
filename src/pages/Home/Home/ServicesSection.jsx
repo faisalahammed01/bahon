@@ -41,7 +41,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="bg-[#063B3F] py-16 px-4">
+    <section className="bg-[#062b2f] py-16 px-4">
       {/* ===== Container ===== */}
       <div className="max-w-6xl mx-auto">
 
@@ -65,8 +65,8 @@ const ServicesSection = () => {
                 rounded-xl p-6 shadow-lg transition duration-300
                 hover:scale-[1.03] hover:shadow-2xl
                 ${service.highlight
-                  ? "bg-lime-300 text-gray-900"
-                  : "bg-white text-gray-800"
+                  ? " glass bg-lime-100 text-gray-900"
+                  : " glass bg-white text-gray-800"
                 }
               `}
             >

@@ -1,4 +1,4 @@
-import heroImage from "../../assets/location-merchant.png";
+import heroImage from "../../../assets/location-merchant.png";
 
 const HeroSection = () => {
   return (

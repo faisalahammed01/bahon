@@ -30,7 +30,7 @@
 
     const FAQSection = () => {
     return (
-        <section className="relative py-20 px-4 bg-gradient-to-br from-slate-800 via-gray-100 to-slate-300 overflow-hidden">
+        <section className="relative py-20 px-4 bg-gradient-to-br from-slate-100 via-gray-100 to-slate-200 overflow-hidden">
 
         {/* Decorative Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-primary/20 blur-3xl rounded-full"></div>
@@ -69,9 +69,10 @@
             </div>
 
             {/* CTA Button */}
+               
             <div className="text-center mt-12">
-            <button className="btn bg-black text-white glass px-10 rounded-full shadow-lg hover:scale-105 transition-all duration-300">
-                Explore More FAQs →
+             <button className="btn bg-[#062b2f] text-white  hover:bg-[#081c1e]  border-none">
+               Explore More FAQs →
             </button>
             </div>
         </div>

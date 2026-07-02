@@ -2,19 +2,18 @@ import { use } from "react";
 import review from "../../../assets/customer-top.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
-import ReviewCard from "../ReviewCard";
+import ReviewCard from "./ReviewCard";
 
 const Review = ({ reviewsPromise }) => {
     const reviews = use(reviewsPromise);
-    console.log(reviews);
+    
     
     return (
         <div className="my-24">
             <div>
                 <img className="mx-auto" src={review} alt="Customer Review" />
-                <h2 className="text-3xl font-bold text-center">What our customers are saying</h2>
-                <p className="text-lg text-gray-600 text-center">Enhance posture, mobility, and well-being effortlessly with Posture Pro. <br />
-                     Achieve proper alignment, reduce pain, and strengthen your body with ease!</p>
+                <h2 className="text-3xl  text-center">--What our customers are saying--</h2>
+               
             </div>
 
              <div>

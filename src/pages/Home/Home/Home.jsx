@@ -1,5 +1,5 @@
-import Banner from "../Banner";
-import HeroSection from "../HeroSection";
+import Banner from "./Banner";
+import HeroSection from "./HeroSection";
 import Brands from "./Brands";
 import FAQSection from "./FAQSection";
 import Info from "./Info";

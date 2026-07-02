@@ -1,5 +1,5 @@
 const ReviewCard = ({ review }) => {
-  const { text, name, role } = review;
+  const { reviews,ratings, userName,user_photoURL } = review;
 
   return (
     <div className="bg-base-100 shadow-lg rounded-2xl p-6 max-w-md mx-auto relative">
@@ -10,7 +10,7 @@ const ReviewCard = ({ review }) => {
 
       {/* Review Text */}
       <p className="text-base-content/80 text-sm leading-relaxed mt-6">
-        {text}
+        {reviews}
       </p>
 
       {/* Divider */}
@@ -21,14 +21,14 @@ const ReviewCard = ({ review }) => {
         {/* Avatar */}
         <div className="avatar">
           <div className="w-12 rounded-full">
-            <img src="https://img.daisyui.com/images/profile/demo/spiderperson@192.webp" />
+            <img src={user_photoURL} />
           </div>
         </div>
 
         {/* Name + Role */}
         <div>
-          <h4 className="font-semibold text-base-content">{name}</h4>
-          <p className="text-sm text-base-content/60">{role}</p>
+          <h4 className="font-semibold text-base-content">{userName}</h4>
+          <p className="text-sm text-base-content/60">{ratings}★</p>
         </div>
       </div>
     </div>
