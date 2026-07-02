@@ -134,12 +134,14 @@
     "district": "Chattogram",
     "city": "Chattogram",
     "covered_area": [
+      "Sitakund",
       "Pahartali",
       "Kotwali",
       "Halishahar",
       "Panchlaish",
       "Agrabad",
       "Chandgaon"
+      
     ],
     "status": "active",
     "flowchart": "https://example.com/chattogram-flowchart.png",
