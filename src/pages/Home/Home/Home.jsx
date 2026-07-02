@@ -6,6 +6,7 @@ import Info from "./Info";
 import Review from "./Review";
 import ServicesSection from "./ServicesSection";
 import Works from "./Works";
+  
 
 const reviewsPromise = fetch('/reviews.json').then(res=> res.json());
 
@@ -30,6 +31,8 @@ const Home = () => {
       <Review reviewsPromise={reviewsPromise}></Review>
 
       <FAQSection></FAQSection>
+
+      
     </div>
   );
 };
