@@ -11,7 +11,7 @@ const Register = () => {
   const { registerUser } = useAuth();
 
   const handleRegister = (data) => {
-    console.log(data);
+    // console.log(data);
     registerUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
@@ -61,11 +61,9 @@ const Register = () => {
             <span className="text-red-500">{errors.password.message}</span>
           )}
 
-          <div>
-            <a className="link link-hover">Forgot password?</a>
-          </div>
-
-          <button className="btn btn-neutral mt-4">Register</button>
+          <button className="btn bg-[#ACC857] hover:bg-[#579011] text-white mt-4">
+            Register
+          </button>
         </fieldset>
       </form>
     </div>

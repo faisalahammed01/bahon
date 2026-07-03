@@ -4,17 +4,19 @@ import AuthImage from "../assets/authImage.png";
 
 const AuthLayout = () => {
   return (
-    <div className="max-w-7xl mx-auto">
+    <section className="max-w-7xl mx-auto">
       <Logo></Logo>
-      <div className="flex">
+      {/* input && image Container */}
+      <div className="flex flex-col md:flex-row items-center justify-between gap-10 ">
+         <div className="flex-1">
+          <img src={AuthImage} alt="Auth" />
+        </div>
         <div className="flex-1">
           <Outlet></Outlet>
         </div>
-        <div className="flex-1">
-          <img src={AuthImage} alt="Auth" />
-        </div>
+       
       </div>
-    </div>
+    </section>
   );
 };
 
