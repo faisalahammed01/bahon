@@ -1,20 +1,35 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import Logo from "../../Componets/Logo/Logo";
+import useAuth from "../../Hooks/useAuth";
+
+const Nav = () => {
+  const { user,logOut } = useAuth();
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        // Logout successful
+      })
+      .catch((error) => {
+        // Handle logout error
+        console.error(error);
+      });
+  };
+
+
 
 const links =
 <>
-<li><NavLink className='uppercase' to='/services'>Services</NavLink></li>
-<li><NavLink className='uppercase' to='/coverage'>Coverage</NavLink></li>
-<li><NavLink className='uppercase' to='/about'>About Us</NavLink></li>
-<li><NavLink className='uppercase' to='/pricing'>Pricing</NavLink></li>
-<li><NavLink className='uppercase' to='/blog'>Blog</NavLink></li>
-<li><NavLink className='uppercase' to='/contact'>Contact</NavLink></li>
+<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/services'>Services</NavLink></li>
+<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/coverage'>Coverage</NavLink></li>
+<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/about'>About Us</NavLink></li>
+<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/pricing'>Pricing</NavLink></li>
+<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/blog'>Blog</NavLink></li>
+<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/contact'>Contact</NavLink></li>
   
 </>
-  
 
-
-const Nav = () => (
+return (
   <div className="navbar bg-base-100 shadow-sm">
     <div className="navbar-start">
       <div className="dropdown">
@@ -37,9 +52,19 @@ const Nav = () => (
       </ul>
     </div>
     <div className="navbar-end">
-      <a className="btn">Button</a>
+      {
+        user? <a   onClick={handleLogout} className="btn  hover:bg-[#ACC857] hover:text-white">
+          Log Out
+        </a> : <Link to="/login" className="btn  hover:bg-[#ACC857]text-white">
+          Login
+        </Link>
+      }
+      <Link to="/beARider" className="btn bg-[#E8F6BB] hover:bg-[#ACC857] hover:text-white">
+         BE a Rider
+        </Link>
     </div>
   </div>
-);
+
+)}
 
 export default Nav;
