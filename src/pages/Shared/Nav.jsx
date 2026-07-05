@@ -24,7 +24,7 @@ const links =
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/coverage'>Coverage</NavLink></li>
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/about'>About Us</NavLink></li>
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/pricing'>Pricing</NavLink></li>
-<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/blog'>Blog</NavLink></li>
+<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/sendParcel'>Send parcel</NavLink></li>
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/contact'>Contact</NavLink></li>
   
 </>
@@ -59,7 +59,7 @@ return (
           Login
         </Link>
       }
-      <Link to="/beARider" className="btn bg-[#E8F6BB] hover:bg-[#ACC857] hover:text-white">
+      <Link to="/rider" className="btn bg-[#E8F6BB] hover:bg-[#ACC857] hover:text-white">
          BE a Rider
         </Link>
     </div>
