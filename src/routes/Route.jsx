@@ -39,6 +39,7 @@ export const router = createBrowserRouter([
             <SendParcel></SendParcel>
           </PrivateRoute>
         ),
+        loader: () => fetch("/serviceSenter.json").then((res) => res.json()),
       },
     ],
   },
