@@ -26,8 +26,11 @@ const links =
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/pricing'>Pricing</NavLink></li>
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/sendParcel'>Send parcel</NavLink></li>
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/contact'>Contact</NavLink></li>
-  
+  {
+  user && <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/dashboard/myParcels'>My Parcels</NavLink></li>
+}
 </>
+
 
 return (
   <div className="navbar bg-base-100 shadow-sm">
