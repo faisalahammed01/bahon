@@ -11,4 +11,9 @@ export default defineConfig({
 
     babel({ presets: [reactCompilerPreset()] })
   ],
+  server: {
+    watch: {
+      usePolling: true,
+    },
+  },
 })

@@ -1,10 +1,11 @@
 import { useForm, useWatch } from "react-hook-form";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiossecure from "../../Hooks/useAxiossecure";
 import useAuth from "../../Hooks/useAuth";
 
 const SendParcel = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -54,6 +55,7 @@ const SendParcel = () => {
 
   const handleSendParcel = (data) => {
     const cost = calculateCost(data);
+    data.cost = cost; // Add cost to the data object
 
     Swal.fire({
       title: "Confirm Parcel Booking",
@@ -75,7 +77,7 @@ const SendParcel = () => {
       confirmButtonColor: "#16a34a",
     }).then((result) => {
       if (result.isConfirmed) {
-        // TODO: send `data` + `cost` to backend here
+        //  send `data` + `cost` to backend here
         axiosSecure
           .post("/parcels", data)
           .then((response) => {
@@ -90,9 +92,12 @@ const SendParcel = () => {
           text: `Your parcel has been booked successfully. Total cost: ৳${cost}`,
           icon: "success",
           confirmButtonColor: "#16a34a",
+          showConfirmButton: false,
+          timer: 2000,
         });
 
         reset();
+        navigate("/dashboard/myparcels");
       }
     });
   };
@@ -313,7 +318,7 @@ const SendParcel = () => {
 
         {/* Submit Button */}
         <div>
-          <button className="btn btn-success text-white px-10">
+          <button className="btn bg-[#ACC857] hover:bg-[#65ac08] text-white px-10">
             Send Parcel
           </button>
         </div>
