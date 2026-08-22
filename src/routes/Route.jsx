@@ -11,9 +11,10 @@ import Rider from "../pages/Rider/Rider";
 import SendParcel from "../pages/SendParcel/SendParcel";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyParcel from "../pages/DashBoard/Myparcel";
-import Payment from "../pages/DashBoard/Payment";
-import PaymentSuccess from "../pages/DashBoard/PaymentSuccess";
-import PaymentCancelled from "../pages/DashBoard/PaymentCancelled";
+import Payment from "../pages/DashBoard/Payment/Payment";
+import PaymentSuccess from "../pages/DashBoard/Payment/PaymentSuccess";
+import PaymentCancelled from "../pages/DashBoard/Payment/PaymentCancelled";
+import PaymentHistory from "../pages/DashBoard/Payment/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       {
         path: "payment-cancelled",
         Component: PaymentCancelled,
+      },
+      {
+        path:'payment-history',
+        Component: PaymentHistory
       }
     ],
   },

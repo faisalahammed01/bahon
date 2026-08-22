@@ -1,7 +1,8 @@
 import { CheckCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import useAxiossecure from "../../Hooks/useAxiossecure";
+import useAxiossecure from "../../../Hooks/useAxiossecure";
+
 // import { Link } from "react-router-dom";
 
 

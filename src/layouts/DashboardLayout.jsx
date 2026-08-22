@@ -1,3 +1,4 @@
+import { FaRegCreditCard } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 
 const DashboardLayout = () => {
@@ -38,6 +39,13 @@ const DashboardLayout = () => {
             {/* Dashboard icon */}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M3 3h6v6H3z"></path><path d="M15 3h6v6h-6z"></path><path d="M15 15h6v6h-6z"></path><path d="M3 15h6v6H3z"></path></svg>
             <span className="is-drawer-close:hidden">My Parcels</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/payment-history" className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Payment History">
+            {/* Dashboard icon */}
+             <FaRegCreditCard></FaRegCreditCard>
+            <span className="is-drawer-close:hidden">Payment History</span>
           </NavLink>
         </li>
 
