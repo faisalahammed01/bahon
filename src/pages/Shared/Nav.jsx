@@ -25,6 +25,7 @@ const links =
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/about'>About Us</NavLink></li>
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/pricing'>Pricing</NavLink></li>
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/sendParcel'>Send parcel</NavLink></li>
+<li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/rider'>Be a Rider</NavLink></li>
 <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/contact'>Contact</NavLink></li>
   {
   user && <li><NavLink className='uppercase hover:bg-[#ACC857] hover:text-white' to='/dashboard/myParcels'>My Parcels</NavLink></li>
@@ -46,6 +47,7 @@ return (
           {links}
         </ul>
       </div>
+      {/* nav-logo */}
       <Logo />
     </div>
     <div className="navbar-center hidden lg:flex">

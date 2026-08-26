@@ -3,10 +3,12 @@ import useAuth from "../../Hooks/useAuth";
 import SocialLogin from "./SocialLogin";
 import axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router";
+import useAxiossecure from "../../Hooks/useAxiossecure";
 
 const Register = () => {
-   const location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiossecure();
   const {
     handleSubmit,
     register,
@@ -16,39 +18,48 @@ const Register = () => {
   const { registerUser, updateUserProfile } = useAuth();
 
   const handleRegister = (data) => {
-  const profileImg = data.photo[0];
-  registerUser(data.email, data.password)
-    .then((result) => {
-      console.log(result.user);
-       navigate(location?.state || "/");
+    const profileImg = data.photo[0];
+    registerUser(data.email, data.password)
+      .then(() => {
+        // store the image in form data
+        const formData = new FormData();
+        formData.append("image", profileImg);
 
-      // store the image in form data
-      const formData = new FormData();
-      formData.append("image", profileImg);
+        // send the photo store and get the photo url
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
 
-      // send the photo store and get the photo url
-      const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`;
+        axios.post(image_API_URL, formData).then((res) => {
+          const photoURL = res.data.data.url;
+          //  created user in the database
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoURL,
+          };
+          axiosSecure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user Created in the dataBase");
+            }
+          });
 
-      axios.post(image_API_URL, formData).then((res) => {
-        console.log("after img upload", res.data.data.url);
+          // Update user Profile to firebase
+          const userProfile = {
+            displayName: data.name,
+            photoURL: photoURL,
+          };
 
-        // Update user Profile to firebase
-        const userProfile = {
-          displayName: data.name,
-          photoURL: res.data.data.url,
-        };
-
-        updateUserProfile(userProfile)
-          .then(() => {
-            console.log("user profile Updated");
-          })
-          .catch((error) => console.log(error));
+          updateUserProfile(userProfile)
+            .then(() => {
+              console.log("user profile Updated");
+              navigate(location?.state || "/");
+            })
+            .catch((error) => console.log(error));
+        });
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+  };
   return (
     <div className="card mx-auto bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
       <h3 className="text-3xl text-center">Welcome to GoParcel</h3>
@@ -129,7 +140,11 @@ const Register = () => {
         </fieldset>
         <p className="">
           Already have an account?{" "}
-          <Link to='/login' state={location.state} className="link link-hover underline text-blue-500">
+          <Link
+            to="/login"
+            state={location.state}
+            className="link link-hover underline text-blue-500"
+          >
             Login
           </Link>
         </p>

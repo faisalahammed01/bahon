@@ -7,7 +7,6 @@ import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
-import Rider from "../pages/Rider/Rider";
 import SendParcel from "../pages/SendParcel/SendParcel";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyParcel from "../pages/DashBoard/Myparcel";
@@ -15,6 +14,8 @@ import Payment from "../pages/DashBoard/Payment/Payment";
 import PaymentSuccess from "../pages/DashBoard/Payment/PaymentSuccess";
 import PaymentCancelled from "../pages/DashBoard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/DashBoard/Payment/PaymentHistory";
+import BeARider from "../pages/Rider/BeARider";
+import ApproveRiders from "../pages/DashBoard/ApproveRiders";
 
 export const router = createBrowserRouter([
   {
@@ -34,9 +35,10 @@ export const router = createBrowserRouter([
         path: "/rider",
         element: (
           <PrivateRoute>
-            <Rider></Rider>
+            <BeARider></BeARider>
           </PrivateRoute>
         ),
+        loader: () => fetch("/serviceSenter.json").then((res) => res.json()),
       },
       {
         path: "/sendParcel",
@@ -88,9 +90,13 @@ export const router = createBrowserRouter([
         Component: PaymentCancelled,
       },
       {
-        path:'payment-history',
-        Component: PaymentHistory
-      }
+        path: "payment-history",
+        Component: PaymentHistory,
+      },
+      {
+        path: "approve-riders",
+        Component: ApproveRiders,
+      },
     ],
   },
 ]);

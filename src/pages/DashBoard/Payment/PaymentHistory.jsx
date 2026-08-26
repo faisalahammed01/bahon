@@ -73,7 +73,7 @@ const PaymentHistory = () => {
                   </td>
 
                   <td>
-                    {payment.paid_at
+                    {payment.createdAt
                       ? new Date(payment.createdAt).toLocaleDateString()
                       : "N/A"}
                   </td>
