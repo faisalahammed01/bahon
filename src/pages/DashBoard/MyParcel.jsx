@@ -103,7 +103,7 @@ const MyParcel = () => {
                   {/* Payment */}
                   <td>
                     {parcel.paymentStatus === "paid" ? (
-                      <span className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                      <span className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-900">
                         Paid
                       </span>
                     ) : (
