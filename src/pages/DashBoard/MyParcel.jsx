@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import useAxiossecure from "../../Hooks/useAxiossecure";
@@ -9,6 +10,7 @@ import { Link } from "react-router";
 const MyParcel = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiossecure();
+
   const { data: parcels = [], refetch } = useQuery({
     queryKey: ["parcels", user?.email],
     queryFn: async () => {
@@ -31,65 +33,160 @@ const MyParcel = () => {
         axiosSecure.delete(`/parcels/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
-            refetch(); // Refetch the parcel data after deletion
+            refetch();
           }
         });
     });
   };
 
   return (
-    <div>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra">
-          {/* head */}
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Cost</th>
-              <th>Payment </th>
-              <th>Delivery Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {parcels.map((parcel, index) => (
-              <tr key={parcel._id}>
-                <th>{index + 1}</th>
-                <td>{parcel.parcelName}</td>
-                <td>৳{parcel.cost}</td>
-                <td>{
-                  parcel.paymentStatus === "paid" ? (
-                    <span className="text-black">Paid</span>
-                  ) : (
-                    <Link to={`/dashboard/payment/${parcel._id}`}>
-                    <button className="btn btn-primary text-black btn-sm">Pay</button>
-                    </Link>
-                  )
-                  
-                  }</td>
-                <td>{parcel.deliveryStatus}</td>
-                <td>
-                  <button className="btn btn-square">
-                    <FaEdit />
-                  </button>
-                  <button className="btn btn-square mx-2">
-                    <FaMagnifyingGlass />
-                  </button>
-                  <button
-                    onClick={() => handleParcelDelete(parcel._id)}
-                    className="btn btn-square"
-                  >
-                    <FaTrashCan />
-                  </button>
-                </td>
+    <div className="min-h-full bg-base-200 p-4 md:p-6">
+      {/* Header */}
+      <div className="mb-6">
+        <h2 className="text-2xl md:text-3xl font-bold text-base-content">
+          My Parcels
+        </h2>
+        <p className="mt-1 text-sm text-base-content/60">
+          Manage and track all your parcels from one place.
+        </p>
+      </div>
+
+      {/* Table Card */}
+      <div className="rounded-2xl border border-base-300 bg-base-100 shadow-sm overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="table w-full">
+            {/* Head */}
+            <thead>
+              <tr className="border-b border-base-300 bg-base-200/70">
+                <th className="text-base-content/70 font-semibold">#</th>
+                <th className="text-base-content/70 font-semibold">
+                  Parcel Name
+                </th>
+                <th className="text-base-content/70 font-semibold">Cost</th>
+                <th className="text-base-content/70 font-semibold">
+                  Payment
+                </th>
+                <th className="text-base-content/70 font-semibold">
+                  Delivery Status
+                </th>
+                <th className="text-base-content/70 font-semibold">
+                  Actions
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {parcels.map((parcel, index) => (
+                <tr
+                  key={parcel._id}
+                  className="border-b border-base-200 last:border-none hover:bg-base-200/40 transition-colors"
+                >
+                  {/* Number */}
+                  <th className="text-base-content/60 font-medium">
+                    {index + 1}
+                  </th>
+
+                  {/* Name */}
+                  <td>
+                    <div className="font-semibold text-base-content">
+                      {parcel.parcelName}
+                    </div>
+                  </td>
+
+                  {/* Cost */}
+                  <td>
+                    <span className="font-semibold text-base-content">
+                      ৳{parcel.cost}
+                    </span>
+                  </td>
+
+                  {/* Payment */}
+                  <td>
+                    {parcel.paymentStatus === "paid" ? (
+                      <span className="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                        Paid
+                      </span>
+                    ) : (
+                      <Link to={`/dashboard/payment/${parcel._id}`}>
+                        <button className="btn btn-primary btn-sm rounded-lg px-5 text-white shadow-none">
+                          Pay
+                        </button>
+                      </Link>
+                    )}
+                  </td>
+
+                  {/* Delivery Status */}
+                  <td>
+                    <span
+                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
+                        parcel.deliveryStatus === "delivered"
+                          ? "bg-emerald-100 text-emerald-700"
+                          : parcel.deliveryStatus === "pending"
+                          ? "bg-amber-100 text-amber-700"
+                          : parcel.deliveryStatus === "cancelled"
+                          ? "bg-red-100 text-red-700"
+                          : "bg-slate-100 text-slate-700"
+                      }`}
+                    >
+                      {parcel.deliveryStatus}
+                    </span>
+                  </td>
+
+                  {/* Actions */}
+                  <td>
+                    <div className="flex items-center gap-2">
+                      {/* Edit */}
+                      <button
+                        className="btn btn-square btn-sm border border-amber-200 bg-amber-50 text-amber-600 shadow-none hover:bg-amber-100 hover:border-amber-300"
+                        title="Edit Parcel"
+                      >
+                        <FaEdit />
+                      </button>
+
+                      {/* Track */}
+                      <button
+                        className="btn btn-square btn-sm border border-sky-200 bg-sky-50 text-sky-600 shadow-none hover:bg-sky-100 hover:border-sky-300"
+                        title="Track Parcel"
+                      >
+                        <FaMagnifyingGlass />
+                      </button>
+
+                      {/* Delete */}
+                      <button
+                        onClick={() => handleParcelDelete(parcel._id)}
+                        className="btn btn-square btn-sm border border-red-200 bg-red-50 text-red-600 shadow-none hover:bg-red-100 hover:border-red-300"
+                        title="Delete Parcel"
+                      >
+                        <FaTrashCan />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Empty State */}
+        {parcels.length === 0 && (
+          <div className="flex flex-col items-center justify-center px-6 py-16 text-center">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-base-200">
+              <FaMagnifyingGlass className="text-xl text-base-content/40" />
+            </div>
+
+            <h3 className="text-lg font-semibold text-base-content">
+              No parcels found
+            </h3>
+
+            <p className="mt-1 text-sm text-base-content/50">
+              You haven't created any parcels yet.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default MyParcel;
+

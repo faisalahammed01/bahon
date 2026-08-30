@@ -6,9 +6,8 @@ import Info from "./Info";
 import Review from "./Review";
 import ServicesSection from "./ServicesSection";
 import Works from "./Works";
-  
 
-const reviewsPromise = fetch('/reviews.json').then(res=> res.json());
+const reviewsPromise = fetch("/reviews.json").then((res) => res.json());
 
 const Home = () => {
   return (
@@ -17,10 +16,7 @@ const Home = () => {
       <Works></Works>
       <ServicesSection></ServicesSection>
       {/* Brands Section */}
-      <div className="mt-10 mb-10">
-        <h2 className="text-2xl text-center pb-12 font-bold">
-          We've helped thousands of sales teams
-        </h2>
+      <div>
         <Brands></Brands>
       </div>
       {/* Info Section */}
@@ -31,8 +27,6 @@ const Home = () => {
       <Review reviewsPromise={reviewsPromise}></Review>
 
       <FAQSection></FAQSection>
-
-      
     </div>
   );
 };

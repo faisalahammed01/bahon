@@ -1,91 +1,83 @@
-
-
 const services = [
   {
+    icon: "🚀",
     title: "Express & Standard Delivery",
     description:
-      "We deliver parcels within 24–72 hours in Dhaka, Chittagong, Sylhet, Khulna, and Rajshahi.",
-    highlight: false,
+      "We deliver parcels within 24–72 hours in major cities across Bangladesh.",
   },
   {
+    icon: "🌍",
     title: "Nationwide Delivery",
     description:
-      "We deliver parcels nationwide with home delivery in every district within 48–72 hours.",
-    highlight: true, // center highlighted card
+      "Home delivery service available in every district with reliable coverage.",
+    highlight: true,
   },
   {
+    icon: "📦",
     title: "Fulfillment Solution",
     description:
-      "We offer customized service with inventory management support, order processing, packaging, and after-sales support.",
-    highlight: false,
+      "Inventory management, packaging, order processing and after-sales support.",
   },
   {
-    title: "Cash on Home Delivery",
+    icon: "💵",
+    title: "Cash on Delivery",
     description:
-      "100% cash on delivery anywhere in Bangladesh with guaranteed safety of your product.",
-    highlight: false,
+      "Secure cash collection and timely payment settlement for merchants.",
   },
   {
-    title: "Corporate Service / Contract In Logistics",
+    icon: "🏢",
+    title: "Corporate Service",
     description:
-      "Customized corporate services which includes warehouse and inventory management support.",
-    highlight: false,
+      "Customized logistics support for businesses and enterprise clients.",
   },
   {
+    icon: "🔄",
     title: "Parcel Return",
     description:
-      "Through our reverse logistics facility we allow end customers to exchange their products with online business merchants.",
-    highlight: false,
+      "Easy reverse logistics and product return management.",
   },
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="bg-[#062b2f] py-16 px-4">
-      {/* ===== Container ===== */}
+    <section className="bg-[#06082f] py-20 px-4">
       <div className="max-w-6xl mx-auto">
-
-        {/* ===== Section Title ===== */}
-        <div className="text-center mb-12">
-          <h2 className="text-white text-3xl md:text-4xl font-bold">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-bold text-white">
             Our Services
           </h2>
-          <p className="text-gray-300 mt-3 text-sm md:text-base">
-            Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle.
+          <p className="text-gray-300 mt-3 max-w-2xl mx-auto">
+            Reliable logistics solutions designed for individuals,
+            businesses and e-commerce merchants.
           </p>
         </div>
 
-        {/* ===== Cards Grid ===== */}
+        {/* Services */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
           {services.map((service, index) => (
             <div
               key={index}
-              className={`
-                rounded-xl p-6 shadow-lg transition duration-300
-                hover:scale-[1.03] hover:shadow-2xl
-                ${service.highlight
-                  ? " glass bg-lime-100 text-gray-900"
-                  : " glass bg-white text-gray-800"
-                }
-              `}
+              className={`rounded-2xl p-6 bg-white transition-all duration-300
+                hover:shadow-xl border
+                ${
+                  service.highlight
+                    ? "border-blue-500"
+                    : "border-gray-100"
+                }`}
             >
-              {/* ===== Icon Placeholder (DaisyUI style avatar) ===== */}
-              <div className="flex justify-center mb-4">
-                <div className="avatar">
-                  <div className="w-14 rounded-full bg-gray-100 flex items-center justify-center">
-                    🚚
-                  </div>
-                </div>
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-2xl mb-4">
+                {service.icon}
               </div>
 
-              {/* ===== Title ===== */}
-              <h3 className="text-lg font-bold text-center mb-2">
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
                 {service.title}
               </h3>
 
-              {/* ===== Description ===== */}
-              <p className="text-sm text-center opacity-80">
+              {/* Description */}
+              <p className="text-sm text-gray-500 leading-relaxed">
                 {service.description}
               </p>
             </div>

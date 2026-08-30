@@ -1,102 +1,103 @@
 import Logo from "../../Componets/Logo/Logo";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaInstagram,
+  FaPhoneAlt,
+} from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#062b2f] text-white border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 py-14">
+    <footer className="bg-[#06082f] text-white">
+      <div className="max-w-7xl mx-auto px-6 py-16">
 
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-          {/* Logo + Description */}
+          {/* Brand */}
           <div>
             <Logo />
 
-            <p className="mt-5 text-sm leading-relaxed text-gray-400">
-              <span className="text-white font-medium">Fast Delivery</span> made simple.
-              Real-time tracking, secure handling, and lightning-fast logistics for your business and personal needs.
-            </p>
-
-            <p className="mt-6 text-xs text-gray-500">
-              © {new Date().getFullYear()} <span className="text-white">All rights reserved</span>
+            <p className="mt-5 text-gray-400 text-sm leading-7">
+              Fast, secure and reliable parcel delivery service across
+              Bangladesh. We help businesses and individuals deliver with
+              confidence.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Company */}
           <div>
-            <h3 className="text-lg font-semibold mb-5 text-white">
-              Quick <span className="text-blue-500">Links</span>
+            <h3 className="font-semibold text-lg mb-5">
+              Company
             </h3>
 
-            <ul className="space-y-3 text-sm text-gray-400">
-              {["Home", "Services", "Tracking", "Pricing", "Contact"].map((item, i) => (
-                <li key={i}>
-                  <a
-                    href="#"
-                    className="hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
+            <ul className="space-y-3 text-gray-400 text-sm">
+              <li><a className="hover:text-white transition">About Us</a></li>
+              <li><a className="hover:text-white transition">Our Services</a></li>
+              <li><a className="hover:text-white transition">Tracking</a></li>
+              <li><a className="hover:text-white transition">Careers</a></li>
             </ul>
           </div>
 
-          {/* Contact + Social */}
+          {/* Support */}
           <div>
-            <h3 className="text-lg font-semibold mb-5 text-white">
-              Contact <span className="text-blue-500">Us</span>
+            <h3 className="font-semibold text-lg mb-5">
+              Support
             </h3>
 
-            <p className="text-sm text-gray-400">
-              Email: <span className="text-white">support@delivery.com</span>
-            </p>
+            <ul className="space-y-3 text-gray-400 text-sm">
+              <li><a className="hover:text-white transition">Help Center</a></li>
+              <li><a className="hover:text-white transition">Privacy Policy</a></li>
+              <li><a className="hover:text-white transition">Terms & Conditions</a></li>
+              <li><a className="hover:text-white transition">Contact Us</a></li>
+            </ul>
+          </div>
 
-            <p className="text-sm text-gray-400 mt-2">
-              Phone: <span className="text-white">+880 1XXX-XXXXXX</span>
-            </p>
+          {/* Contact */}
+          <div>
+            <h3 className="font-semibold text-lg mb-5">
+              Contact
+            </h3>
 
-            {/* Social Icons */}
-            <div className="flex gap-5 mt-6">
+            <div className="space-y-4 text-sm text-gray-400">
+              <div className="flex items-center gap-3">
+                <MdEmail className="text-blue-400 text-lg" />
+                support@delivery.com
+              </div>
 
-              {/* Twitter */}
-              <a className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition">
-                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775..." />
-                </svg>
+              <div className="flex items-center gap-3">
+                <FaPhoneAlt className="text-blue-400 text-sm" />
+                +880 1XXX-XXXXXX
+              </div>
+            </div>
+
+            {/* Social */}
+            <div className="flex gap-3 mt-6">
+              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition">
+                <FaFacebookF />
               </a>
 
-              {/* YouTube */}
-              <a className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition">
-                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
-                  <path d="M19.615 3.184c-3.604-.246-11.631-.245..." />
-                </svg>
+              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition">
+                <FaLinkedinIn />
               </a>
 
-              {/* Facebook */}
-              <a className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition">
-                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642..." />
-                </svg>
+              <a className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition">
+                <FaInstagram />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-14 border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-
+        {/* Bottom */}
+        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
           <p>
-            Built with <span className="text-red-500">♥</span> for modern logistics system
+            © {new Date().getFullYear()} Delivery. All rights reserved.
           </p>
 
-          <div className="flex gap-6 mt-3 md:mt-0">
-            <a className="hover:text-white transition">Privacy</a>
-            <a className="hover:text-white transition">Terms</a>
-            <a className="hover:text-white transition">Support</a>
-          </div>
+          <p className="mt-3 md:mt-0">
+            Made for modern logistics & parcel delivery.
+          </p>
         </div>
-
       </div>
     </footer>
   );

@@ -1,6 +1,7 @@
+
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import { Check, X, Trash2, MapPin, Mail } from "lucide-react";
+import { Check, X, Trash2, MapPin, Mail, Users } from "lucide-react";
 import useAxiossecure from "../../Hooks/useAxiossecure";
 
 const ApproveRiders = () => {
@@ -47,7 +48,6 @@ const ApproveRiders = () => {
           showConfirmButton: false,
         });
 
-        // Page change হবে না, শুধু data update হবে
         refetch();
       }
     } catch (error) {
@@ -86,7 +86,6 @@ const ApproveRiders = () => {
           showConfirmButton: false,
         });
 
-        // Page change হবে না
         refetch();
       }
     } catch (error) {
@@ -100,166 +99,313 @@ const ApproveRiders = () => {
     }
   };
 
-  // শুধু pending rider count করার জন্য
   const pendingRiders = riders.filter(
     (rider) => rider.status === "pending"
   );
 
-  // সব rider UI-তে দেখানোর জন্য
   const displayedRiders = riders;
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <span className="loading loading-spinner loading-lg text-primary"></span>
+      <div className="min-h-[400px] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <span className="loading loading-spinner loading-lg text-blue-600"></span>
+          <p className="text-sm text-gray-500">
+            Loading riders...
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-800">
-          Approve Riders
-        </h2>
+    <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto space-y-6">
 
-        <span className="badge badge-warning badge-lg font-semibold">
-          {pendingRiders.length} Pending
-        </span>
-      </div>
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center">
+              <Users className="w-6 h-6 text-blue-600" />
+            </div>
 
-      {/* No Riders */}
-      {displayedRiders.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-300 bg-gray-50 py-16">
-          <p className="text-gray-500">
-            No riders found.
-          </p>
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">
+                Approve Riders
+              </h2>
+
+              <p className="text-sm text-gray-500 mt-1">
+                Manage rider applications and approval status
+              </p>
+            </div>
+          </div>
+
+          {/* Pending Counter */}
+          <div className="bg-white border border-gray-100 rounded-xl px-5 py-3 shadow-sm">
+            <p className="text-xs text-gray-500 font-medium">
+              Pending Applications
+            </p>
+
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-2xl font-bold text-gray-800">
+                {pendingRiders.length}
+              </span>
+
+              <span className="px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold">
+                Pending
+              </span>
+            </div>
+          </div>
         </div>
-      ) : (
-        <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
-          <table className="table w-full">
-            <thead className="bg-gray-100 text-gray-600">
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>District</th>
-                <th>Status</th>
-                <th className="text-center">Action</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              {displayedRiders.map((rider, index) => (
-                <tr
-                  key={rider._id}
-                  className="hover:bg-gray-50 transition-colors"
-                >
-                  {/* Number */}
-                  <td className="text-gray-500">
-                    {index + 1}
-                  </td>
+        {/* Main Card */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
 
-                  {/* Name */}
-                  <td className="font-medium text-gray-800">
-                    {rider.name}
-                  </td>
+          {/* Card Top */}
+          <div className="px-5 sm:px-6 py-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <h3 className="text-lg font-bold text-gray-800">
+                Rider Applications
+              </h3>
 
-                  {/* Email */}
-                  <td>
-                    <div className="flex items-center gap-1 text-gray-600">
-                      <Mail size={14} />
-                      {rider.email}
-                    </div>
-                  </td>
+              <p className="text-sm text-gray-500 mt-1">
+                Review and manage all registered riders
+              </p>
+            </div>
 
-                  {/* District */}
-                  <td>
-                    <div className="flex items-center gap-1 text-gray-600">
-                      <MapPin size={14} />
-                      {rider.district}
-                    </div>
-                  </td>
+            <div className="text-sm text-gray-500">
+              Total Riders:{" "}
+              <span className="font-bold text-gray-800">
+                {displayedRiders.length}
+              </span>
+            </div>
+          </div>
 
-                  {/* Status */}
-                  <td>
-                    <span
-                      className={`badge badge-outline ${
-                        rider.status === "approved"
-                          ? "badge-success"
-                          : rider.status === "rejected"
-                          ? "badge-error"
-                          : "badge-warning"
-                      }`}
+          {/* No Riders */}
+          {displayedRiders.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20 px-5 text-center">
+              <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4">
+                <Users className="w-7 h-7 text-gray-400" />
+              </div>
+
+              <h3 className="text-lg font-semibold text-gray-700">
+                No Riders Found
+              </h3>
+
+              <p className="text-sm text-gray-500 mt-1">
+                There are currently no rider applications available.
+              </p>
+            </div>
+          ) : (
+            /* Table */
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[900px]">
+
+                {/* Table Head */}
+                <thead>
+                  <tr className="bg-slate-50 text-left">
+                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                      #
+                    </th>
+
+                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                      Rider
+                    </th>
+
+                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                      Email
+                    </th>
+
+                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                      District
+                    </th>
+
+                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                      Status
+                    </th>
+
+                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 text-center">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+
+                {/* Table Body */}
+                <tbody className="divide-y divide-gray-100">
+                  {displayedRiders.map((rider, index) => (
+                    <tr
+                      key={rider._id}
+                      className="hover:bg-slate-50 transition-colors duration-200"
                     >
-                      {rider.status}
-                    </span>
-                  </td>
+                      {/* Number */}
+                      <td className="px-5 py-4">
+                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 text-sm font-semibold text-gray-600">
+                          {index + 1}
+                        </span>
+                      </td>
 
-                  {/* Action */}
-                  <td>
-                    <div className="flex items-center justify-center gap-2">
-                      
-                      {/* Approve */}
-                      {rider.status !== "approved" && (
-                        <button
-                          onClick={() =>
-                            handleStatusUpdate(
-                              rider._id,
-                              "approved",
-                              rider.name,
-                              rider.email
-                            )
-                          }
-                          title="Approve"
-                          className="btn btn-circle btn-sm bg-green-100 text-green-600 border-none hover:bg-green-500 hover:text-white"
+                      {/* Rider */}
+                      <td className="px-5 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+                            <span className="text-sm font-bold text-blue-600">
+                              {rider.name
+                                ? rider.name.charAt(0).toUpperCase()
+                                : "R"}
+                            </span>
+                          </div>
+
+                          <div>
+                            <p className="font-semibold text-gray-800">
+                              {rider.name}
+                            </p>
+
+                            <p className="text-xs text-gray-400 mt-0.5">
+                              Rider
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Email */}
+                      <td className="px-5 py-4">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <Mail className="w-4 h-4 text-gray-400" />
+                          <span>{rider.email}</span>
+                        </div>
+                      </td>
+
+                      {/* District */}
+                      <td className="px-5 py-4">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <MapPin className="w-4 h-4 text-gray-400" />
+                          <span>{rider.district}</span>
+                        </div>
+                      </td>
+
+                      {/* Status */}
+                      <td className="px-5 py-4">
+                        <span
+                          className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold capitalize ${
+                            rider.status === "approved"
+                              ? "bg-green-50 text-green-700"
+                              : rider.status === "rejected"
+                              ? "bg-red-50 text-red-700"
+                              : "bg-amber-50 text-amber-700"
+                          }`}
                         >
-                          <Check size={16} />
-                        </button>
-                      )}
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full mr-2 ${
+                              rider.status === "approved"
+                                ? "bg-green-500"
+                                : rider.status === "rejected"
+                                ? "bg-red-500"
+                                : "bg-amber-500"
+                            }`}
+                          ></span>
 
-                      {/* Reject */}
-                      {rider.status !== "rejected" && (
-                        <button
-                          onClick={() =>
-                            handleStatusUpdate(
-                              rider._id,
-                              "rejected",
-                              rider.name,
-                              rider.email
-                            )
-                          }
-                          title="Reject"
-                          className="btn btn-circle btn-sm bg-red-100 text-red-600 border-none hover:bg-red-500 hover:text-white"
-                        >
-                          <X size={16} />
-                        </button>
-                      )}
+                          {rider.status}
+                        </span>
+                      </td>
 
-                      {/* Delete */}
-                      <button
-                        onClick={() =>
-                          handleDelete(
-                            rider._id,
-                            rider.name
-                          )
-                        }
-                        title="Delete"
-                        className="btn btn-circle btn-sm bg-gray-100 text-gray-600 border-none hover:bg-gray-700 hover:text-white"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      {/* Actions */}
+                      <td className="px-5 py-4">
+                        <div className="flex items-center justify-center gap-2">
+
+                          {/* Approve */}
+                          {rider.status !== "approved" && (
+                            <button
+                              onClick={() =>
+                                handleStatusUpdate(
+                                  rider._id,
+                                  "approved",
+                                  rider.name,
+                                  rider.email
+                                )
+                              }
+                              title="Approve Rider"
+                              className="w-9 h-9 rounded-lg flex items-center justify-center bg-green-50 text-green-600 hover:bg-green-600 hover:text-white transition-all duration-200"
+                            >
+                              <Check className="w-4 h-4" />
+                            </button>
+                          )}
+
+                          {/* Reject */}
+                          {rider.status !== "rejected" && (
+                            <button
+                              onClick={() =>
+                                handleStatusUpdate(
+                                  rider._id,
+                                  "rejected",
+                                  rider.name,
+                                  rider.email
+                                )
+                              }
+                              title="Reject Rider"
+                              className="w-9 h-9 rounded-lg flex items-center justify-center bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-all duration-200"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          )}
+
+                          {/* Delete */}
+                          <button
+                            onClick={() =>
+                              handleDelete(
+                                rider._id,
+                                rider.name
+                              )
+                            }
+                            title="Delete Rider"
+                            className="w-9 h-9 rounded-lg flex items-center justify-center bg-gray-100 text-gray-500 hover:bg-gray-700 hover:text-white transition-all duration-200"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {/* Bottom */}
+          {displayedRiders.length > 0 && (
+            <div className="px-5 sm:px-6 py-4 bg-slate-50 border-t border-gray-100">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <p className="text-sm text-gray-500">
+                  Showing{" "}
+                  <span className="font-semibold text-gray-700">
+                    {displayedRiders.length}
+                  </span>{" "}
+                  rider{displayedRiders.length !== 1 ? "s" : ""}
+                </p>
+
+                <div className="flex items-center gap-4 text-xs">
+                  <span className="flex items-center gap-1.5 text-green-600">
+                    <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                    Approved
+                  </span>
+
+                  <span className="flex items-center gap-1.5 text-amber-600">
+                    <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                    Pending
+                  </span>
+
+                  <span className="flex items-center gap-1.5 text-red-600">
+                    <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                    Rejected
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
 
 export default ApproveRiders;
+

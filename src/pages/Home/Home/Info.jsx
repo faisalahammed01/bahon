@@ -1,7 +1,6 @@
-import liveTrackingImage from "../../../assets/live-tracking.png";
-import safeDeliveryImage from "../../../assets/safe-delivery.png";
-import callsupportImage from "../../../assets/safe-delivery.png";
-
+import liveTrackingImage from "../../../assets/packing.jpg";
+import safeDeliveryImage from "../../../assets/delivery-men and customer.jpg";
+import callsupportImage from "../../../assets/delivery-men.jpg";
 
 const Info = () => {
   return (
@@ -10,12 +9,12 @@ const Info = () => {
       {/* Section 1 - Live Parcel Tracking */}
       <section className="px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-3xl p-8 md:p-12 border border-base-300">
+          <div className="bg-base-100 shadow-xl hover:shadow-blue-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-3xl p-8 md:p-12 border border-base-300">
 
             <div className="flex flex-col md:flex-row items-center gap-10">
 
               {/* Image Box */}
-              <div className="w-[320px] h-[260px] md:w-[400px] md:h-[300px] border-2 border-dashed border-gray-400 rounded-xl flex items-center justify-center overflow-hidden">
+              <div className="w-[320px] h-[260px] md:w-[400px] md:h-[300px] border-2 border-dashed border-blue-400 rounded-xl flex items-center justify-center overflow-hidden">
                 <img
                   src={liveTrackingImage}
                   alt="Live Parcel Tracking"
@@ -25,12 +24,12 @@ const Info = () => {
 
               {/* Content */}
               <div className="flex-1 space-y-5">
-                <div className="badge badge-primary badge-outline">
+                <div className="badge border-blue-500 text-blue-600 bg-blue-50">
                   Real-Time Tracking
                 </div>
 
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  Live Parcel Tracking
+                  <span className="text-blue-600">Live Parcel</span> Tracking
                 </h2>
 
                 <p className="text-base-content/70 text-lg leading-relaxed">
@@ -46,18 +45,18 @@ const Info = () => {
       {/* Section 2 - Safe Delivery */}
       <section className="px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-3xl p-8 md:p-12 border border-base-300">
+          <div className="bg-base-100 shadow-xl hover:shadow-blue-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-3xl p-8 md:p-12 border border-base-300">
 
             <div className="flex flex-col-reverse md:flex-row items-center gap-10">
 
               {/* Content */}
               <div className="flex-1 space-y-5">
-                <div className="badge badge-success badge-outline">
+                <div className="badge border-blue-500 text-blue-600 bg-blue-50">
                   Secure Shipping
                 </div>
 
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  100% Safe Delivery
+                  <span className="text-blue-600">100% Safe</span> Delivery
                 </h2>
 
                 <p className="text-base-content/70 text-lg leading-relaxed">
@@ -66,7 +65,7 @@ const Info = () => {
               </div>
 
               {/* Image Box */}
-              <div className="w-[320px] h-[260px] md:w-[400px] md:h-[300px] border-2 border-dashed border-gray-400 rounded-xl flex items-center justify-center overflow-hidden">
+              <div className="w-[320px] h-[260px] md:w-[400px] md:h-[300px] border-2 border-dashed border-blue-400 rounded-xl flex items-center justify-center overflow-hidden">
                 <img
                   src={safeDeliveryImage}
                   alt="Safe Delivery"
@@ -82,12 +81,12 @@ const Info = () => {
       {/* Section 3 - Call Center Support */}
       <section className="px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-base-100 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-3xl p-8 md:p-12 border border-base-300">
+          <div className="bg-base-100 shadow-xl hover:shadow-blue-100 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-3xl p-8 md:p-12 border border-base-300">
 
             <div className="flex flex-col md:flex-row items-center gap-10">
 
               {/* Image Box */}
-              <div className="w-[320px] h-[260px] md:w-[400px] md:h-[300px] border-2 border-dashed border-gray-400 rounded-xl flex items-center justify-center overflow-hidden">
+              <div className="w-[320px] h-[260px] md:w-[400px] md:h-[300px] border-2 border-dashed border-blue-400 rounded-xl flex items-center justify-center overflow-hidden">
                 <img
                   src={callsupportImage}
                   alt="24/7 Call Center Support"
@@ -97,12 +96,12 @@ const Info = () => {
 
               {/* Content */}
               <div className="flex-1 space-y-5">
-                <div className="badge badge-warning badge-outline">
+                <div className="badge border-blue-500 text-blue-600 bg-blue-50">
                   Always Available
                 </div>
 
                 <h2 className="text-3xl md:text-4xl font-bold">
-                  24/7 Call Center Support
+                  <span className="text-blue-600">24/7 Call Center</span> Support
                 </h2>
 
                 <p className="text-base-content/70 text-lg leading-relaxed">
