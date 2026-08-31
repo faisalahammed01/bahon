@@ -15,8 +15,11 @@ import PaymentSuccess from "../pages/DashBoard/Payment/PaymentSuccess";
 import PaymentCancelled from "../pages/DashBoard/Payment/PaymentCancelled";
 import PaymentHistory from "../pages/DashBoard/Payment/PaymentHistory";
 import BeARider from "../pages/Rider/BeARider";
-import ApproveRiders from "../pages/DashBoard/ApproveRiders";
-import UsersManagement from "../pages/DashBoard/User/UsersManagement";
+import ApproveRiders from "../pages/DashBoard/Admin/ApproveRiders";
+import UsersManagement from "../pages/DashBoard/Admin/UsersManagement";
+import AdminRoute from "../Hooks/AdminRoute";
+import NotFound from "../Componets/NotFound";
+import AssignRiders from "../pages/DashBoard/Admin/AssignRiders";
 
 export const router = createBrowserRouter([
   {
@@ -96,12 +99,32 @@ export const router = createBrowserRouter([
       },
       {
         path: "approve-riders",
-        Component: ApproveRiders,
+        element: (
+          <AdminRoute>
+            <ApproveRiders></ApproveRiders>
+          </AdminRoute>
+        ),
       },
       {
         path: "users-management",
-        Component: UsersManagement,
+        element: (
+          <AdminRoute>
+            <UsersManagement></UsersManagement>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "Assign-riders",
+        element: (
+          <AdminRoute>
+            <AssignRiders></AssignRiders>
+          </AdminRoute>
+        ),
       },
     ],
+  },
+  {
+    path: "*",
+    Component: NotFound,
   },
 ]);

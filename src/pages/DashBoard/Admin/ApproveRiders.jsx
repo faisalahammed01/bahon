@@ -1,8 +1,7 @@
-
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { Check, X, Trash2, MapPin, Mail, Users } from "lucide-react";
-import useAxiossecure from "../../Hooks/useAxiossecure";
+import useAxiossecure from "../../../Hooks/useAxiossecure";
 
 const ApproveRiders = () => {
   const axiosSecure = useAxiossecure();
@@ -27,8 +26,7 @@ const ApproveRiders = () => {
       showCancelButton: true,
       confirmButtonText: `Yes, ${status}`,
       cancelButtonText: "Cancel",
-      confirmButtonColor:
-        status === "approved" ? "#16a34a" : "#dc2626",
+      confirmButtonColor: status === "approved" ? "#16a34a" : "#dc2626",
     });
 
     if (!confirm.isConfirmed) return;
@@ -99,9 +97,7 @@ const ApproveRiders = () => {
     }
   };
 
-  const pendingRiders = riders.filter(
-    (rider) => rider.status === "pending"
-  );
+  const pendingRiders = riders.filter((rider) => rider.status === "pending");
 
   const displayedRiders = riders;
 
@@ -110,9 +106,7 @@ const ApproveRiders = () => {
       <div className="min-h-[400px] flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <span className="loading loading-spinner loading-lg text-blue-600"></span>
-          <p className="text-sm text-gray-500">
-            Loading riders...
-          </p>
+          <p className="text-sm text-gray-500">Loading riders...</p>
         </div>
       </div>
     );
@@ -121,7 +115,6 @@ const ApproveRiders = () => {
   return (
     <div className="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
-
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -160,7 +153,6 @@ const ApproveRiders = () => {
 
         {/* Main Card */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-
           {/* Card Top */}
           <div className="px-5 sm:px-6 py-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
@@ -200,7 +192,6 @@ const ApproveRiders = () => {
             /* Table */
             <div className="overflow-x-auto">
               <table className="w-full min-w-[900px]">
-
                 {/* Table Head */}
                 <thead>
                   <tr className="bg-slate-50 text-left">
@@ -221,7 +212,10 @@ const ApproveRiders = () => {
                     </th>
 
                     <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Status
+                      Application Status
+                    </th>
+                    <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                      Work Status
                     </th>
 
                     <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 text-center">
@@ -290,8 +284,8 @@ const ApproveRiders = () => {
                             rider.status === "approved"
                               ? "bg-green-50 text-green-700"
                               : rider.status === "rejected"
-                              ? "bg-red-50 text-red-700"
-                              : "bg-amber-50 text-amber-700"
+                                ? "bg-red-50 text-red-700"
+                                : "bg-amber-50 text-amber-700"
                           }`}
                         >
                           <span
@@ -299,19 +293,23 @@ const ApproveRiders = () => {
                               rider.status === "approved"
                                 ? "bg-green-500"
                                 : rider.status === "rejected"
-                                ? "bg-red-500"
-                                : "bg-amber-500"
+                                  ? "bg-red-500"
+                                  : "bg-amber-500"
                             }`}
                           ></span>
 
                           {rider.status}
                         </span>
                       </td>
+                      <td className="px-5 py-4">
+                        <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 text-sm font-semibold text-gray-600">
+                          {rider.workStatus}
+                        </span>
+                      </td>
 
                       {/* Actions */}
                       <td className="px-5 py-4">
                         <div className="flex items-center justify-center gap-2">
-
                           {/* Approve */}
                           {rider.status !== "approved" && (
                             <button
@@ -320,7 +318,7 @@ const ApproveRiders = () => {
                                   rider._id,
                                   "approved",
                                   rider.name,
-                                  rider.email
+                                  rider.email,
                                 )
                               }
                               title="Approve Rider"
@@ -338,7 +336,7 @@ const ApproveRiders = () => {
                                   rider._id,
                                   "rejected",
                                   rider.name,
-                                  rider.email
+                                  rider.email,
                                 )
                               }
                               title="Reject Rider"
@@ -350,12 +348,7 @@ const ApproveRiders = () => {
 
                           {/* Delete */}
                           <button
-                            onClick={() =>
-                              handleDelete(
-                                rider._id,
-                                rider.name
-                              )
-                            }
+                            onClick={() => handleDelete(rider._id, rider.name)}
                             title="Delete Rider"
                             className="w-9 h-9 rounded-lg flex items-center justify-center bg-gray-100 text-gray-500 hover:bg-gray-700 hover:text-white transition-all duration-200"
                           >
@@ -408,4 +401,3 @@ const ApproveRiders = () => {
 };
 
 export default ApproveRiders;
-

@@ -1,6 +1,7 @@
 import { FaMotorcycle, FaRegCreditCard, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
+import { FaUserCheck } from "react-icons/fa6";
 
 const DashboardLayout = () => {
   const { role, isLoading } = useRole();
@@ -51,9 +52,7 @@ const DashboardLayout = () => {
             <h1 className="text-lg font-bold text-gray-800">
               Go<span className="text-[#FF6B35]">Parcel</span>
             </h1>
-            <p className="hidden text-xs text-gray-400 sm:block">
-              Dashboard
-            </p>
+            <p className="hidden text-xs text-gray-400 sm:block">Dashboard</p>
           </div>
 
           <div className="ml-auto">
@@ -91,9 +90,7 @@ const DashboardLayout = () => {
                 <h2 className="text-xl font-bold text-gray-800">
                   Go<span className="text-[#FF6B35]">Parcel</span>
                 </h2>
-                <p className="text-xs text-gray-400">
-                  Delivery Management
-                </p>
+                <p className="text-xs text-gray-400">Delivery Management</p>
               </div>
             </Link>
           </div>
@@ -107,10 +104,7 @@ const DashboardLayout = () => {
             <ul className="space-y-2">
               {/* Homepage */}
               <li>
-                <Link
-                  to="/"
-                  className={navLinkClass({ isActive: false })}
-                >
+                <Link to="/" className={navLinkClass({ isActive: false })}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -130,41 +124,44 @@ const DashboardLayout = () => {
                 </Link>
               </li>
 
-              {/* User Menu */}
-              {role === "user" && (
+              {/* Common Menu For All Roles */}
+              <li>
+                <NavLink to="/dashboard/myParcels" className={navLinkClass}>
+                  ...
+                  <span>My Parcels</span>
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  to="/dashboard/payment-history"
+                  className={navLinkClass}
+                >
+                  <FaRegCreditCard className="h-5 w-5" />
+                  <span>Payment History</span>
+                </NavLink>
+              </li>
+
+              {/* Rider Menu */}
+              {role === "rider" && (
                 <>
                   <li>
                     <NavLink
-                      to="/dashboard/myParcels"
+                      to="/dashboard/pending-deliveries"
                       className={navLinkClass}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="h-5 w-5"
-                      >
-                        <rect x="3" y="3" width="7" height="7" />
-                        <rect x="14" y="3" width="7" height="7" />
-                        <rect x="14" y="14" width="7" height="7" />
-                        <rect x="3" y="14" width="7" height="7" />
-                      </svg>
-
-                      <span>My Parcels</span>
+                      <FaMotorcycle className="h-5 w-5" />
+                      <span>Pending Deliveries</span>
                     </NavLink>
                   </li>
 
                   <li>
                     <NavLink
-                      to="/dashboard/payment-history"
+                      to="/dashboard/completed-deliveries"
                       className={navLinkClass}
                     >
-                      <FaRegCreditCard className="h-5 w-5" />
-                      <span>Payment History</span>
+                      <FaMotorcycle className="h-5 w-5" />
+                      <span>Completed Deliveries</span>
                     </NavLink>
                   </li>
                 </>
@@ -180,6 +177,15 @@ const DashboardLayout = () => {
                     >
                       <FaMotorcycle className="h-5 w-5" />
                       <span>Approve Riders</span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/Assign-riders"
+                      className={navLinkClass}
+                    >
+                      <FaUserCheck className="h-5 w-5" />
+                      <span>Assign Riders</span>
                     </NavLink>
                   </li>
 
