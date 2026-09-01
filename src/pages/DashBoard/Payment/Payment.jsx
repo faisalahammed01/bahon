@@ -42,11 +42,11 @@ const Payment = () => {
 
         <div className="bg-gray-50 rounded-lg p-4 mb-6">
           <p className="text-sm text-gray-500 mb-1">Amount to pay</p>
-          <p className="text-3xl font-bold text-green-600">৳{parcel?.cost}</p>
+          <p className="text-3xl font-bold text-blue-950">৳{parcel?.cost}</p>
         </div>
 
         <button
-          className="btn btn-primary text-black w-full"
+          className="btn w-full bg-blue-950 hover:bg-blue-800 text-white"
           onClick={handlePayment}
         >
           Pay Now

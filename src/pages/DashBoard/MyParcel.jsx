@@ -108,7 +108,7 @@ const MyParcel = () => {
                       </span>
                     ) : (
                       <Link to={`/dashboard/payment/${parcel._id}`}>
-                        <button className="btn btn-primary btn-sm rounded-lg px-5 text-white shadow-none">
+                        <button className="btn btn-sm bg-blue-950 hover:bg-blue-800 text-white">
                           Pay
                         </button>
                       </Link>

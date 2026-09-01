@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { FaUserShield, FaUser, FaSearch } from "react-icons/fa";
+import { FaUserShield, FaUser, FaSearch, FaUserMinus, FaUserPlus } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiossecure from "../../../Hooks/useAxiossecure";
 
@@ -111,7 +111,7 @@ const UsersManagement = () => {
 
       <div className="overflow-x-auto border rounded-xl">
         <table className="table">
-          <thead className="bg-[#FF6B35] text-white">
+          <thead className="bg-gray-50 text-text-black font-medium border-b">
             <tr>
               <th>#</th>
               <th>Name</th>
@@ -169,27 +169,30 @@ const UsersManagement = () => {
                     : "N/A"}
                 </td>
 
-                <td>
-                  {user.role === "admin" ? (
-                    <button
-                      onClick={() =>
-                        handleRemoveAdmin(user._id)
-                      }
-                      className="btn btn-sm btn-error text-white"
-                    >
-                      Remove Admin
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        handleMakeAdmin(user._id)
-                      }
-                      className="btn btn-sm bg-[#FF6B35] text-white border-none"
-                    >
-                      Make Admin
-                    </button>
-                  )}
-                </td>
+
+<td>
+  {user.role === "admin" ? (
+    <button
+      onClick={() => handleRemoveAdmin(user._id)}
+      className="btn btn-sm btn-ghost text-red-700 hover:bg-red-50"
+      title="Remove Admin"
+    >
+      <FaUserMinus size={16} />
+    </button>
+  ) : (
+    <button
+      onClick={() => handleMakeAdmin(user._id)}
+      className="btn btn-sm btn-ghost text-blue-700 hover:bg-blue-50"
+      title="Make Admin"
+    >
+      <FaUserPlus size={16} />
+    </button>
+  )}
+</td>
+
+
+
+
               </tr>
             ))}
           </tbody>

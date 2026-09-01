@@ -4,11 +4,13 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import useAxiossecure from "../../Hooks/useAxiossecure";
 import riderImg from "../../assets/BeARider.png";
+import useRole from "../../Hooks/useRole";
 
 const BeARider = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosSecure = useAxiossecure();
+  const { role, roleLoading } = useRole();
   const serviceCenters = useLoaderData();
 
   const {
@@ -32,56 +34,67 @@ const BeARider = () => {
       ...new Set(
         serviceCenters
           .filter((c) => c.region === region)
-          .map((d) => d.district)
+          .map((d) => d.district),
       ),
     ];
   };
 
   // Submit rider application
-  const handleBeARider = async (data) => {
-    try {
-      const riderData = {
-        ...data,
-        email: user?.email,
-        status: "pending",
-        createdAt: new Date(),
-      };
+ const handleBeARider = async (data) => {
+  if (roleLoading) return;
 
-      const response = await axiosSecure.post("/riders", riderData);
+  if (role === "admin") {
+    return Swal.fire({
+      icon: "warning",
+      title: "Admin Account Detected",
+      text: "Your account is currently assigned as an Administrator. Administrator accounts cannot apply for the Rider Program.",
+      confirmButtonText: "Understood",
+      confirmButtonColor: "#2563EB",
+    });
+  }
 
-      if (response.data.insertedId) {
-        await Swal.fire({
-          title: "Application Submitted!",
-          text: "We will review your application and contact you soon.",
-          icon: "success",
-          confirmButtonColor: "#2563EB",
-        });
+  try {
+    const riderData = {
+      ...data,
+      email: user?.email,
+      status: "pending",
+      createdAt: new Date(),
+    };
 
-        reset();
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Error submitting rider application:", error);
+    const response = await axiosSecure.post("/riders", riderData);
 
-      Swal.fire({
-        title: "Something went wrong",
-        text: "Please try again later.",
-        icon: "error",
+    if (response.data.insertedId) {
+      await Swal.fire({
+        icon: "success",
+        title: "Application Submitted",
+        text: "Your Rider application has been submitted successfully. Our team will review your application and contact you soon.",
         confirmButtonColor: "#2563EB",
       });
-    }
-  };
 
+      reset();
+      navigate("/");
+    }
+  } catch (error) {
+    console.error("Error submitting rider application:", error);
+
+    Swal.fire({
+      icon: "error",
+      title: "Application Not Allowed",
+      text:
+        error.response?.data?.message ||
+        "Something went wrong. Please try again later.",
+      confirmButtonColor: "#2563EB",
+    });
+  }
+};
   return (
     <div className="bg-slate-50">
       {/* ================= MAIN CONTENT ================= */}
       <main className="px-4 py-8 md:py-12">
         <div className="max-w-6xl mx-auto">
           <div className="bg-white rounded-3xl shadow-xl border border-blue-100 overflow-hidden grid grid-cols-1 md:grid-cols-2">
-
             {/* ================= LEFT SIDE - FORM ================= */}
             <div className="p-6 md:p-10 lg:p-12">
-
               {/* Header */}
               <div className="mb-7">
                 <span className="inline-block px-4 py-1.5 mb-3 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold">
@@ -350,7 +363,6 @@ const BeARider = () => {
             {/* ================= RIGHT SIDE - IMAGE ================= */}
             <div className="hidden md:block bg-gradient-to-br from-blue-50 to-white">
               <div className="h-full flex flex-col items-center justify-start px-8 pt-16">
-
                 {/* Badge */}
                 <span className="px-5 py-2 rounded-full bg-white border border-blue-100 shadow-sm text-blue-600 font-semibold text-sm mb-8">
                   🚴 Delivery Partner
@@ -366,8 +378,7 @@ const BeARider = () => {
                 {/* Text */}
                 <div className="text-center mt-5 max-w-md pb-10">
                   <h3 className="text-2xl font-bold text-slate-800">
-                    Deliver with{" "}
-                    <span className="text-blue-600">GOParcel</span>
+                    Deliver with <span className="text-blue-600">GOParcel</span>
                   </h3>
 
                   <p className="text-slate-500 mt-2 leading-relaxed">
@@ -375,7 +386,6 @@ const BeARider = () => {
                     receive their parcels faster.
                   </p>
                 </div>
-
               </div>
             </div>
           </div>
