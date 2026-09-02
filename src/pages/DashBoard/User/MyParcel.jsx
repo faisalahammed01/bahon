@@ -1,7 +1,7 @@
 
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../Hooks/useAuth";
-import useAxiossecure from "../../Hooks/useAxiossecure";
+import useAuth from "../../../Hooks/useAuth";
+import useAxiossecure from "../../../Hooks/useAxiossecure";
 import { FaEdit } from "react-icons/fa";
 import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";

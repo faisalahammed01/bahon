@@ -9,7 +9,6 @@ import Register from "../pages/Auth/Register";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SendParcel from "../pages/SendParcel/SendParcel";
 import DashboardLayout from "../layouts/DashboardLayout";
-import MyParcel from "../pages/DashBoard/Myparcel";
 import Payment from "../pages/DashBoard/Payment/Payment";
 import PaymentSuccess from "../pages/DashBoard/Payment/PaymentSuccess";
 import PaymentCancelled from "../pages/DashBoard/Payment/PaymentCancelled";
@@ -20,6 +19,10 @@ import UsersManagement from "../pages/DashBoard/Admin/UsersManagement";
 import AdminRoute from "../Hooks/AdminRoute";
 import NotFound from "../Componets/NotFound";
 import AssignRiders from "../pages/DashBoard/Admin/AssignRiders";
+import AssignedDeliveries from "../pages/DashBoard/Riders/AssignedDeliveries";
+import RiderRoute from "../Hooks/RiderRoute";
+import MyParcel from "../pages/DashBoard/User/MyParcel";
+import CompletedDeliveries from "../pages/DashBoard/Riders/CompletedDeliveries";
 
 export const router = createBrowserRouter([
   {
@@ -97,6 +100,27 @@ export const router = createBrowserRouter([
         path: "payment-history",
         Component: PaymentHistory,
       },
+
+      // Rider Routes
+      {
+        path: "assigned-deliveries",
+        element: (
+          <RiderRoute>
+            <AssignedDeliveries></AssignedDeliveries>
+          </RiderRoute>
+        ),
+      },
+      {
+        path: "completed-deliveries",
+        element: (
+          <RiderRoute>
+            <CompletedDeliveries></CompletedDeliveries>
+          </RiderRoute>
+        ),
+      },
+
+      // Admin Routes
+
       {
         path: "approve-riders",
         element: (

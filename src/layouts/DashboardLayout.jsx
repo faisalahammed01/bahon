@@ -1,7 +1,13 @@
-import { FaMotorcycle, FaRegCreditCard, FaUsers } from "react-icons/fa";
+import {
+  FaMotorcycle,
+  FaRegCreditCard,
+  FaTasks,
+  FaUsers,
+} from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
 import { FaUserCheck } from "react-icons/fa6";
+import { MdOutlineTaskAlt } from "react-icons/md";
 
 const DashboardLayout = () => {
   const { role, isLoading } = useRole();
@@ -147,11 +153,11 @@ const DashboardLayout = () => {
                 <>
                   <li>
                     <NavLink
-                      to="/dashboard/pending-deliveries"
+                      to="/dashboard/assigned-deliveries"
                       className={navLinkClass}
                     >
-                      <FaMotorcycle className="h-5 w-5" />
-                      <span>Pending Deliveries</span>
+                      <FaTasks className="h-5 w-5" />
+                      <span>Assigned Deliveries</span>
                     </NavLink>
                   </li>
 
@@ -160,7 +166,7 @@ const DashboardLayout = () => {
                       to="/dashboard/completed-deliveries"
                       className={navLinkClass}
                     >
-                      <FaMotorcycle className="h-5 w-5" />
+                      <MdOutlineTaskAlt className="h-5 w-5" />
                       <span>Completed Deliveries</span>
                     </NavLink>
                   </li>

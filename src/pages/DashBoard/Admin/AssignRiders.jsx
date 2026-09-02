@@ -104,7 +104,7 @@ const AssignRiders = () => {
               <tr key={parcel._id}>
                 <td>{index + 1}</td>
 
-                <td>{parcel.name}</td>
+                <td>{parcel.parcelName}</td>
 
                 <td>৳ {parcel.cost}</td>
 
