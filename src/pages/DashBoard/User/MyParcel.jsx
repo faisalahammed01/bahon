@@ -1,9 +1,8 @@
-
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiossecure from "../../../Hooks/useAxiossecure";
 import { FaEdit } from "react-icons/fa";
-import { FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
+import { FaLocationDot, FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
 
@@ -63,15 +62,14 @@ const MyParcel = () => {
                   Parcel Name
                 </th>
                 <th className="text-base-content/70 font-semibold">Cost</th>
-                <th className="text-base-content/70 font-semibold">
-                  Payment
-                </th>
+                <th className="text-base-content/70 font-semibold">Payment</th>
                 <th className="text-base-content/70 font-semibold">
                   Delivery Status
                 </th>
                 <th className="text-base-content/70 font-semibold">
-                  Actions
+                  Tracking ID
                 </th>
+                <th className="text-base-content/70 font-semibold">Actions</th>
               </tr>
             </thead>
 
@@ -122,14 +120,24 @@ const MyParcel = () => {
                         parcel.deliveryStatus === "delivered"
                           ? "bg-emerald-100 text-emerald-700"
                           : parcel.deliveryStatus === "pending"
-                          ? "bg-amber-100 text-amber-700"
-                          : parcel.deliveryStatus === "cancelled"
-                          ? "bg-red-100 text-red-700"
-                          : "bg-slate-100 text-slate-700"
+                            ? "bg-amber-100 text-amber-700"
+                            : parcel.deliveryStatus === "cancelled"
+                              ? "bg-red-100 text-red-700"
+                              : "bg-slate-100 text-slate-700"
                       }`}
                     >
                       {parcel.deliveryStatus}
                     </span>
+                  </td>
+                  <td>
+                    <Link 
+                      to={`/trackParcel/${parcel.trackingId}`}
+                      className="flex items-center gap-1 text-blue-600 hover:text-blue-800"
+                      title="Track Parcel"
+                    >
+                      <FaLocationDot />
+                      <span className="text-sm">Track</span>
+                    </Link>
                   </td>
 
                   {/* Actions */}
@@ -189,4 +197,3 @@ const MyParcel = () => {
 };
 
 export default MyParcel;
-

@@ -41,49 +41,29 @@ const AssignedDeliveries = () => {
       }
     } catch (error) {
       console.log(error);
+
       Swal.fire("Error", "Something went wrong!", "error");
     }
-  };
-
-  const handleAcceptDelivery = (parcel) => {
-    Swal.fire({
-      title: "Accept Delivery?",
-      text: "Are you sure you want to accept this parcel?",
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Yes, Accept",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateStatus(
-          parcel._id,
-          "rider_arriving",
-          "Parcel Accepted Successfully",
-        );
-      }
-    });
-  };
-  const handleCancelDelivery = (parcel) => {
-    Swal.fire({
-      title: "Cancel Delivery?",
-      text: "Are you sure you want to cancel this delivery?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, Cancel",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        updateStatus(
-          parcel._id,
-          "cancelled",
-          "Delivery Cancelled Successfully",
-        );
-      }
-    });
   };
 
   const handlePickedUp = (parcel) => {
     Swal.fire({
       title: "Parcel Picked Up?",
       text: "Confirm parcel pickup.",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateStatus(parcel._id, "picked_up", "Parcel Picked Up Successfully");
+      }
+    });
+  };
+
+  const handleInTransit = (parcel) => {
+    Swal.fire({
+      title: "Move to In Transit?",
+      text: "Parcel is on the way.",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Yes",
@@ -111,17 +91,19 @@ const AssignedDeliveries = () => {
   if (isLoading) {
     return (
       <div className="text-center mt-10">
-        <span className="loading loading-spinner loading-lg"></span>
+        {" "}
+        <span className="loading loading-spinner loading-lg"></span>{" "}
       </div>
     );
   }
 
   return (
     <div>
+      {" "}
       <h2 className="text-3xl font-bold mb-5">
-        My Deliveries ({parcels.length})
+        My Deliveries ({parcels.length}){" "}
       </h2>
-
+      ```
       <div className="overflow-x-auto">
         <table className="table">
           <thead>
@@ -153,24 +135,6 @@ const AssignedDeliveries = () => {
 
                 <td>
                   {parcel.deliveryStatus === "driver_assigned" && (
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => handleAcceptDelivery(parcel)}
-                        className="btn btn-success btn-sm text-white"
-                      >
-                        Accept
-                      </button>
-
-                      <button
-                        onClick={() => handleCancelDelivery(parcel)}
-                        className="btn btn-error btn-sm text-white"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  )}
-
-                  {parcel.deliveryStatus === "rider_arriving" && (
                     <button
                       onClick={() => handlePickedUp(parcel)}
                       className="btn btn-info btn-sm text-white"
@@ -179,10 +143,19 @@ const AssignedDeliveries = () => {
                     </button>
                   )}
 
+                  {parcel.deliveryStatus === "picked_up" && (
+                    <button
+                      onClick={() => handleInTransit(parcel)}
+                      className="btn btn-warning btn-sm text-white"
+                    >
+                      In Transit
+                    </button>
+                  )}
+
                   {parcel.deliveryStatus === "in_transit" && (
                     <button
                       onClick={() => handleDelivered(parcel)}
-                      className="btn btn-primary btn-sm text-white"
+                      className="btn btn-success btn-sm text-white"
                     >
                       Deliver
                     </button>

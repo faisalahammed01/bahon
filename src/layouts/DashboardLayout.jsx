@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router";
 import useRole from "../Hooks/useRole";
-import { FaUserCheck } from "react-icons/fa6";
+import { FaBoxOpen, FaUserCheck } from "react-icons/fa6";
 import { MdOutlineTaskAlt } from "react-icons/md";
 
 const DashboardLayout = () => {
@@ -109,8 +109,9 @@ const DashboardLayout = () => {
 
             <ul className="space-y-2">
               {/* Homepage */}
+              {/* Dashboard Home */}
               <li>
-                <Link to="/" className={navLinkClass({ isActive: false })}>
+                <NavLink to="/dashboard" end className={navLinkClass}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -126,14 +127,14 @@ const DashboardLayout = () => {
                     <path d="M9 21v-7h6v7" />
                   </svg>
 
-                  <span>Homepage</span>
-                </Link>
+                  <span>Dashboard</span>
+                </NavLink>
               </li>
 
               {/* Common Menu For All Roles */}
               <li>
                 <NavLink to="/dashboard/myParcels" className={navLinkClass}>
-                  ...
+                  <FaBoxOpen className="h-5 w-5" />
                   <span>My Parcels</span>
                 </NavLink>
               </li>

@@ -23,6 +23,8 @@ import AssignedDeliveries from "../pages/DashBoard/Riders/AssignedDeliveries";
 import RiderRoute from "../Hooks/RiderRoute";
 import MyParcel from "../pages/DashBoard/User/MyParcel";
 import CompletedDeliveries from "../pages/DashBoard/Riders/CompletedDeliveries";
+import ParcelTrack from "../pages/ParcelTrack/ParcelTrack";
+import DashBoardHome from "../pages/DashBoard/DashBoardHome/DashBoardHome";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +58,10 @@ export const router = createBrowserRouter([
         ),
         loader: () => fetch("/serviceSenter.json").then((res) => res.json()),
       },
+      {
+        path: "/trackParcel/:trackingId",
+        Component: ParcelTrack,
+      },
     ],
   },
   {
@@ -80,6 +86,10 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        Component: DashBoardHome,
+      },
       {
         path: "myParcels",
         Component: MyParcel,

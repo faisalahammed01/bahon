@@ -49,13 +49,6 @@ const Nav = () => {
           Send Parcel
         </NavLink>
       </li>
-
-      <li>
-        <NavLink className={navLinkClass} to="/rider">
-          Be a Rider
-        </NavLink>
-      </li>
-
       <li>
         <NavLink className={navLinkClass} to="/contact">
           Contact
@@ -66,7 +59,7 @@ const Nav = () => {
         <li>
           <NavLink
             className={navLinkClass}
-            to="/dashboard/myParcels"
+            to="/dashboard"
           >
             My Parcels
           </NavLink>
