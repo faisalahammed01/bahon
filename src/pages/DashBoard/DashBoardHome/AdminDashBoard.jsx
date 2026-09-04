@@ -100,7 +100,7 @@ const AdminDashBoard = () => {
   return (
     <div className="space-y-7">
       {/* ================= WELCOME SECTION ================= */}
-      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 p-6 text-white shadow-xl sm:p-8">
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#FF6B35] via-[#FF7F50] to-[#FF8C42] p-8 text-white shadow-2xl">
         {/* Background decoration */}
         <div className="absolute -right-10 -top-16 h-48 w-48 rounded-full bg-white/10"></div>
         <div className="absolute -bottom-20 right-20 h-56 w-56 rounded-full bg-white/5"></div>

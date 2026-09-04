@@ -1,5 +1,6 @@
 import "leaflet/dist/leaflet.css";
 import { useRef, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useLoaderData } from "react-router";
 
@@ -37,26 +38,19 @@ const Coverage = () => {
     }
   };
 
-  // 👉 ONLY CHITTAGONG FOCUS QUICK ACTIONS
-const divisions = [...new Set(serviceSenter.map((item) => item.region))];
+  const divisions = [...new Set(serviceSenter.map((item) => item.region))];
 
-const handleDivisionSelect = (division) => {
-  const district = serviceSenter.find(
-    (item) => item.region === division
-  );
+  const handleDivisionSelect = (division) => {
+    const district = serviceSenter.find((item) => item.region === division);
 
-  if (!district) return;
+    if (!district) return;
 
-  setSelectedDistrict(district);
+    setSelectedDistrict(district);
 
-  Mapref.current?.flyTo(
-    [district.latitude, district.longitude],
-    9,
-    {
+    Mapref.current?.flyTo([district.latitude, district.longitude], 9, {
       duration: 1.5,
-    }
-  );
-};
+    });
+  };
 
   const resetView = () => {
     setSelectedDistrict(null);
@@ -64,74 +58,83 @@ const handleDivisionSelect = (division) => {
   };
 
   return (
-    <div className=" flex flex-col bg-[#0B0F1A] text-white ">
-
+    <div className="flex flex-col bg-gradient-to-br from-slate-50 via-white to-cyan-50 text-gray-800">
       {/* HEADER */}
       <div className="text-center pt-10 px-4">
-        <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-transparent bg-clip-text">
+        <span className="inline-block mb-3 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-semibold">
+          Nationwide Service Coverage
+        </span>
+
+        <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-transparent bg-clip-text">
           Live Service Coverage Map
         </h2>
-        <p className="text-gray-400 mt-3">
-          Explore Chattogram region service availability in real-time
+
+        <p className="text-gray-600 mt-4 max-w-2xl mx-auto leading-relaxed">
+          Explore our service coverage areas across Bangladesh and quickly find
+          available delivery locations near you.
         </p>
       </div>
 
       {/* SEARCH + CONTROLS */}
       <div className="flex flex-col items-center mt-8 px-4">
-
-        <form
-          onSubmit={handleSearch}
-          className="flex items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 w-full max-w-xl shadow-lg"
-        >
+        {/* SEARCH FORM */}
+     <form
+  onSubmit={handleSearch}
+  className="flex items-center gap-3 border-2 border-black bg-white/90 backdrop-blur-sm border rounded-2xl px-4 py-3 w-full max-w-xl shadow-lg hover:shadow-xl transition-all duration-300"
+>
           <input
             type="text"
             name="location"
             placeholder="Search district..."
-            className="w-full bg-transparent outline-none text-white placeholder-gray-400"
+            className="w-full bg-transparent outline-none text-gray-800 placeholder-gray-400"
           />
-          <button className="px-5 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 text-black font-semibold hover:scale-105 transition">
-            Search
+
+          <button
+            type="submit"
+            className="px-5 py-2.5 rounded-xl "
+          >
+          <FaSearch></FaSearch>
           </button>
         </form>
 
+        {/* NOT FOUND */}
         {notFound && (
-          <p className="text-red-400 mt-3 text-sm">
-            District not found
+          <p className="text-red-500 mt-3 text-sm font-medium">
+            District not found. Please try another district name.
           </p>
         )}
 
-        {/* QUICK ACTIONS (CHATTOGRAM ONLY) */}
-       <div className="flex flex-wrap justify-center gap-2 mt-5">
-  {divisions.map((division) => (
-    <button
-      key={division}
-      onClick={() => handleDivisionSelect(division)}
-      className={`px-4 py-2 rounded-full border text-sm transition
-      ${
-        selectedDistrict?.region === division
-          ? "bg-cyan-500 text-black"
-          : "bg-white/5 border-white/10 hover:bg-white/10"
-      }`}
-    >
-      {division}
-    </button>
-  ))}
-</div>
+        {/* QUICK ACTIONS */}
+        <div className="flex flex-wrap justify-center gap-2 mt-5">
+          {divisions.map((division) => (
+            <button
+              key={division}
+              onClick={() => handleDivisionSelect(division)}
+              className={`px-4 py-2 rounded-full border-4 border-black text-sm font-medium transition-all duration-200
+              ${
+                selectedDistrict?.region === division
+                  ? "bg-cyan-500 border-cyan-500 border-2  text-white shadow-md"
+                  : "bg-white border-gray-200 text-gray-700 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600"
+              }`}
+            >
+              {division}
+            </button>
+          ))}
+        </div>
 
         {/* RESET BUTTON */}
         <button
           onClick={resetView}
-          className="mt-4 text-sm text-gray-400 hover:text-white transition"
+          className="mt-4 text-sm font-medium text-gray-500 hover:text-blue-600 transition"
         >
-          Reset View
+          ↻ Reset View
         </button>
       </div>
 
       {/* MAP + INFO PANEL */}
       <div className="flex-1 px-4 py-10 grid grid-cols-1 lg:grid-cols-4 gap-6">
-
         {/* MAP */}
-        <div className="lg:col-span-3 rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-[750px]">
+        <div className="lg:col-span-3 rounded-3xl overflow-hidden border border-gray-200 shadow-xl h-[750px]">
           <MapContainer
             className="w-full h-full"
             center={position}
@@ -145,14 +148,20 @@ const handleDivisionSelect = (division) => {
             />
 
             {serviceSenter.map((service, i) => (
-              <Marker
-                key={i}
-                position={[service.latitude, service.longitude]}
-              >
+              <Marker key={i} position={[service.latitude, service.longitude]}>
                 <Popup>
-                  <strong>{service.district}</strong>
-                  <br />
-                  Service Area: {service.covered_area.join(", ")}
+                  <div className="text-gray-800 min-w-[180px]">
+                    <h4 className="font-bold text-blue-600 text-base mb-1">
+                      {service.district}
+                    </h4>
+
+                    <p className="text-sm text-gray-600">
+                      <span className="font-semibold text-gray-700">
+                        Service Area:
+                      </span>{" "}
+                      {service.covered_area.join(", ")}
+                    </p>
+                  </div>
                 </Popup>
               </Marker>
             ))}
@@ -160,34 +169,121 @@ const handleDivisionSelect = (division) => {
         </div>
 
         {/* SIDE INFO PANEL */}
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 h-[750px] overflow-auto">
-          <h3 className="text-xl font-semibold mb-4">
-            District Details
-          </h3>
+        <div className="bg-white border border-gray-200 rounded-3xl p-6 h-[750px] overflow-auto shadow-lg">
+          {/* PANEL HEADER */}
+          <div className="mb-6 pb-4 border-b border-gray-100">
+            <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
+              Coverage Information
+            </p>
+
+            <h3 className="text-2xl font-bold text-gray-800 mt-1">
+              District Details
+            </h3>
+
+            <p className="text-sm text-gray-500 mt-2">
+              Select a location from the map or search above to view coverage
+              details.
+            </p>
+          </div>
 
           {selectedDistrict ? (
-            <div className="space-y-3">
-              <p>
-                <span className="text-gray-400">District:</span>{" "}
-                <span className="text-cyan-400 font-semibold">
-                  {selectedDistrict.district}
-                </span>
-              </p>
+            <div className="space-y-5">
+              {/* DISTRICT */}
+              <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4">
+                <p className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                  District
+                </p>
 
-              <p>
-                <span className="text-gray-400">Coverage:</span>
-                <br />
-                {selectedDistrict.covered_area.join(", ")}
-              </p>
-          
+                <p className="text-xl font-bold text-blue-600">
+                  {selectedDistrict.district}
+                </p>
+              </div>
+
+              {/* REGION */}
+              <div className="bg-gray-50 rounded-2xl p-4">
+                <p className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-1">
+                  Region
+                </p>
+
+                <p className="text-base font-semibold text-gray-800">
+                  {selectedDistrict.region}
+                </p>
+              </div>
+
+              {/* COVERAGE */}
+              <div className="bg-gray-50 rounded-2xl p-4">
+                <p className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">
+                  Covered Areas
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {selectedDistrict.covered_area.map((area, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 shadow-sm"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* COORDINATES */}
+              <div className="bg-gray-50 rounded-2xl p-4">
+                <p className="text-xs uppercase tracking-wide text-gray-500 font-semibold mb-2">
+                  Location
+                </p>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <p className="text-xs text-gray-400">Latitude</p>
+                    <p className="text-sm font-semibold text-gray-700">
+                      {selectedDistrict.latitude}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-xs text-gray-400">Longitude</p>
+                    <p className="text-sm font-semibold text-gray-700">
+                      {selectedDistrict.longitude}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* STATUS */}
+              <div className="flex items-center gap-3 bg-green-50 border border-green-100 rounded-2xl p-4">
+                <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+
+                <div>
+                  <p className="text-sm font-semibold text-green-700">
+                    Service Available
+                  </p>
+
+                  <p className="text-xs text-green-600 mt-0.5">
+                    Delivery service is currently available in this area.
+                  </p>
+                </div>
+              </div>
             </div>
           ) : (
-            <p className="text-gray-400 text-sm">
-              Select a district to see details
-            </p>
+            /* EMPTY STATE */
+            <div className="h-[500px] flex flex-col items-center justify-center text-center">
+              <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4">
+                <span className="text-3xl">📍</span>
+              </div>
+
+              <h4 className="text-lg font-semibold text-gray-800">
+                No District Selected
+              </h4>
+
+              <p className="text-sm text-gray-500 mt-2 max-w-xs leading-relaxed">
+                Search for a district or click a region button to explore
+                available service coverage.
+              </p>
+            </div>
           )}
         </div>
-
       </div>
     </div>
   );

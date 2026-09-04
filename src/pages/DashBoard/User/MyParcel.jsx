@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiossecure from "../../../Hooks/useAxiossecure";
-import { FaEdit } from "react-icons/fa";
 import { FaLocationDot, FaMagnifyingGlass, FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
@@ -130,7 +129,7 @@ const MyParcel = () => {
                     </span>
                   </td>
                   <td>
-                    <Link 
+                    <Link
                       to={`/trackParcel/${parcel.trackingId}`}
                       className="flex items-center gap-1 text-blue-600 hover:text-blue-800"
                       title="Track Parcel"
@@ -144,20 +143,6 @@ const MyParcel = () => {
                   <td>
                     <div className="flex items-center gap-2">
                       {/* Edit */}
-                      <button
-                        className="btn btn-square btn-sm border border-amber-200 bg-amber-50 text-amber-600 shadow-none hover:bg-amber-100 hover:border-amber-300"
-                        title="Edit Parcel"
-                      >
-                        <FaEdit />
-                      </button>
-
-                      {/* Track */}
-                      <button
-                        className="btn btn-square btn-sm border border-sky-200 bg-sky-50 text-sky-600 shadow-none hover:bg-sky-100 hover:border-sky-300"
-                        title="Track Parcel"
-                      >
-                        <FaMagnifyingGlass />
-                      </button>
 
                       {/* Delete */}
                       <button
