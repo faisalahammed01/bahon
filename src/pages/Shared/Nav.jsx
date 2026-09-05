@@ -11,6 +11,8 @@ import useAuth from "../../Hooks/useAuth";
 
 const Nav = () => {
   const { user, logOut } = useAuth();
+  console.log(user);
+  console.log("Navbar Photo:", user?.photoURL);
 
   const handleLogout = () => {
     logOut()
@@ -109,20 +111,18 @@ const Nav = () => {
                 <div className="hidden md:flex items-center gap-3 bg-slate-50 border border-slate-200 px-3 py-2 rounded-full">
                   <img
                     src={
-                      user?.photoURL ||
-                      "https://i.ibb.co/4pDNDk1/avatar.png"
+                      user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"
                     }
                     alt="User"
-                    className="w-10 h-10 rounded-full object-cover border-2 border-blue-500 transition-all duration-300 hover:scale-110"
+                    referrerPolicy="no-referrer"
+                    className="w-10 h-10 rounded-full object-cover border-2 border-blue-500"
                   />
 
                   <div className="leading-tight">
                     <p className="font-semibold text-slate-800 text-sm">
                       {user?.displayName || "User"}
                     </p>
-                    <p className="text-xs text-slate-500">
-                      Welcome Back 👋
-                    </p>
+                    <p className="text-xs text-slate-500">Welcome Back 👋</p>
                   </div>
                 </div>
 
