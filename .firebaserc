@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "goparcel-aea49",
+    "prod": "goparcel-aea49"
+  },
+  "targets": {},
+  "etags": {}
+}

@@ -4,9 +4,11 @@ GoParcel is a full-stack MERN-based parcel delivery platform that enables users 
 
 ## 🌐 Live Links
 
-* **Live Site:** 
-* **Client Repository:** 
-* **Server Repository:** 
+* Live Site: https://goparcel-aea49.web.app
+
+* Client Repository: https://github.com/iamfaisalahammed/bahon
+
+* Server Repository: https://github.com/iamfaisalahammed/GoParcel-Server
 
 ---
 
@@ -79,6 +81,7 @@ GoParcel is a full-stack MERN-based parcel delivery platform that enables users 
 ### Deployment
 
 * Vercel
+
 
 ---
 
