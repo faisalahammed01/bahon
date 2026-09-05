@@ -11,9 +11,9 @@ const HeroSection = () => {
           <div>
            
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
               Merchant & Customer
-              <span className="text-blue-400"> Satisfaction </span>
+              <span className="text-blue-400 "> Satisfaction </span>
               Comes First
             </h1>
 
@@ -23,17 +23,7 @@ const HeroSection = () => {
               secure parcel handling for businesses and individuals.
             </p>
 
-            {/* Buttons */}
-            <div className="mt-8 flex flex-wrap gap-4">
-              <button className="btn bg-blue-600 hover:bg-blue-700 border-none text-white rounded-xl px-6">
-                Become a Merchant
-              </button>
-
-              <button className="btn btn-outline border-blue-400 text-blue-300 hover:bg-blue-600 hover:border-blue-600 hover:text-white rounded-xl px-6">
-                Earn with ZapShift
-              </button>
-            </div>
-            
+          
           </div>
 
           {/* Right Image */}

@@ -9,10 +9,10 @@ const AssignRiders = () => {
   const [selectedParcel, setSelectedParcel] = useState(null);
 
   const { data: parcels = [], isLoading } = useQuery({
-    queryKey: ["parcels", "pending-Pickup"],
+    queryKey: ["parcels", "Parcel-paid"],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        "/parcels?deliveryStatus=pending-Pickup"
+        "/parcels?deliveryStatus=Parcel-paid"
       );
       return res.data;
     },
@@ -144,7 +144,7 @@ const AssignRiders = () => {
               </span>
             </p>
 
-            <div className="badge badge-primary mb-4">
+            <div className="badge bg-blue-200 text-black mb-4">
               Total Riders: {riders.length}
             </div>
 
